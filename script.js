@@ -123,7 +123,7 @@ reels.forEach((elem,idx)=>{
                         <div class="user">
                             <img src="${elem.userProfile}" alt="img">
                             <h4>${elem.username}</h4>
-                            <button>${elem.isFollowed?'Unfollow':'Follow'}</button>
+                            <button id=${idx} class='follow'>${elem.isFollowed?'Unfollow':'Follow'}</button>
                         </div>
                         <h3>${elem.caption}</h3>
                     </div>
@@ -160,8 +160,24 @@ addData()
 
 
 allReels.addEventListener('click',(dets)=>{
-  reels[dets.target.id].likeCount++
-  reels[dets.target.id].isLiked = true;
+  if(dets.target.className=='like'){
+    if(!reels[dets.target.id].isLiked){
+    reels[dets.target.id].likeCount++;
+    reels[dets.target.id].isLiked = true;
+  }else{
+    reels[dets.target.id].likeCount--;
+    reels[dets.target.id].isLiked = false;
+  }
+  }
+   
+  if(dets.target.className == 'follow'){
+    if(!reels[dets.target.id].isFollowed){
+      reels[dets.target.id].isFollowed = true;
+    } else {
+      reels[dets.target.id].isFollowed = false;
+    }
+  }
 
+  
   addData()
 })
