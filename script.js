@@ -211,3 +211,20 @@ allReels.addEventListener("click", (dets) => {
     addData();
   }
 });
+
+addData();
+
+
+allReels.addEventListener("scroll", () => {
+  const videos = allReels.querySelectorAll("video");
+  const muteBtns = allReels.querySelectorAll(".mute");
+
+  videos.forEach((video, idx) => {
+    video.muted = true;
+    reels[idx].isMuted = true;
+  });
+
+  muteBtns.forEach((btn) => {
+    btn.innerHTML = '<i class="ri-volume-mute-fill"></i>';
+  });
+});
